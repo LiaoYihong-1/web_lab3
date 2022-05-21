@@ -8,9 +8,8 @@ window.setInterval(function () {
     },
     1000
 );
-function format(time){
-    if(Number(time)<10){
-        return "0"+time;
-    }
-    else return time;
+function format(time) {
+    if (Number(time) < 10) {
+        return "0" + time;
+    } else return time;
 }

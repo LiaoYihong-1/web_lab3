@@ -1,5 +1,7 @@
 package Data;
 
+import lombok.NoArgsConstructor;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -7,11 +9,14 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.faces.validator.FacesValidator;
 @FacesValidator("validatorInputY")
+@NoArgsConstructor
 public class ValidatorInputY implements Validator{
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-        if (value == null){
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,"y validation failed","field must not be null");
+        if (value.toString().matches("[^a-zA-Z]")){
+            FacesMessage msg = new FacesMessage("y validation failed","field must be not null");
+            System.out.print("sadasdasdasd");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
         try{
@@ -22,7 +27,8 @@ public class ValidatorInputY implements Validator{
                 throw new ValidatorException(msg);
             }
         } catch (NumberFormatException e){
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,"y validation failed","y must be a number");
+            FacesMessage msg = new FacesMessage("y validation failed","y must be a number");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
     }

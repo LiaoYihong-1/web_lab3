@@ -155,3 +155,6 @@ function clear(id){
     drawBackground(id);// redraw background(nor includes dots)
     dots =[];
 }
+function spinnerChange(){
+    document.getElementById("requestForm:visible-submit").click();
+}

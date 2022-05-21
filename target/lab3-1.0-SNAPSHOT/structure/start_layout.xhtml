@@ -13,14 +13,18 @@
 
 <h:body>
     <ui:insert name="scripts"/>
+    <ui:insert name="css"/>
 
     <div class="header">
         <ui:insert name="header"/>
     </div>
-
-    <div class="main part">
+    <div class="topnav">
+        <ui:insert name="git"/>
+    </div>
+    <div class="column middle">
         <ui:insert name="content"/>
     </div>
+
 
 </h:body>
 </html>

@@ -24,10 +24,14 @@ public class Dots implements Serializable {
 
     public void addDot(){
         if(Validator.validateValues(dot)){
-            dot = new Dot(dot.getX(), dot.getY(), dot.getR());
+            dot = new Dot(dot.getX(),dot.getY()+"", dot.getR());
             dotsList.add(dot);
-            DotsTable dotToTable = new DotsTable(dot.getX(),dot.getY(), dot.getR(), dot.getDate());
-            storage.addDot(dotToTable);
+            DotsTable dotToTable = new DotsTable(dot.getX(),Double.parseDouble(dot.getY()), dot.getR(), dot.getDate());
+            try{
+                storage.addNewDot(dotToTable);
+            }catch (Exception e){
+                e.getMessage();
+            }
             table.add(dotToTable);
             dot = new Dot();
         }
@@ -41,6 +45,9 @@ public class Dots implements Serializable {
         this.table.clear();
     }
 
+    public void deleteone(Dot dot){
+        this.dotsList.remove(dot);
+    }
 
     public List<Dot> getDotsList() {
         return dotsList;

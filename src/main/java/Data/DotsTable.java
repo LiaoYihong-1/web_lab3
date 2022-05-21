@@ -3,17 +3,20 @@ import java.io.Serializable;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 
 @Data
 @Entity
 @NoArgsConstructor
 @Table(name="dotsTable")
+@SessionScoped
 public class DotsTable implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id",unique=true, nullable = false)
+    @Column(name="id",unique=true, nullable = false)
     private Long id;
     @Column(nullable = false,name="x")
     private Double x;

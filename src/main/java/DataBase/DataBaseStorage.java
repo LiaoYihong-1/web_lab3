@@ -6,8 +6,14 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.metamodel.MetadataSources;
 import org.hibernate.service.ServiceRegistry;
+import org.postgresql.Driver;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 @NoArgsConstructor
 public class DataBaseStorage implements Serializable {
     private static SessionFactory sessionFactory = null;
@@ -31,6 +37,28 @@ public class DataBaseStorage implements Serializable {
         session.close();
     }
 
+    public void addNewDot(DotsTable dot) throws Exception{
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String password = "163752410";
+        String user = "postgres";
+        Class.forName("org.postgresql.Driver");
+        try(Connection connection = DriverManager.getConnection(url,user,password)){
+            try(PreparedStatement ps= connection.prepareStatement(
+                    "INSERT INTO dotstable(hit,r,time,x,y) values (?,?,?,?,?)"
+            )){
+                ps.setBoolean(1,dot.isHit());
+                ps.setDouble(2,dot.getR());
+                ps.setObject(3,dot.getTime());
+                ps.setDouble(4,dot.getX());
+                ps.setDouble(5,dot.getY());
+                ps.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        };
+    }
     public void deleteDot(DotsTable dot){
         Session session = getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
