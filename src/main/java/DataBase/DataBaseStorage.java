@@ -39,10 +39,8 @@ public class DataBaseStorage implements Serializable {
 
     public void addNewDot(DotsTable dot) throws Exception{
         String url = "jdbc:postgresql://localhost:5432/postgres";
-        String password = "163752410";
-        String user = "postgres";
         Class.forName("org.postgresql.Driver");
-        try(Connection connection = DriverManager.getConnection(url,user,password)){
+        try(Connection connection = DriverManager.getConnection(url)){
             try(PreparedStatement ps= connection.prepareStatement(
                     "INSERT INTO dotstable(hit,r,time,x,y) values (?,?,?,?,?)"
             )){
