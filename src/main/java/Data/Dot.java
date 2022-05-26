@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 
 
 @Data

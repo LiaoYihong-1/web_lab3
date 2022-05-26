@@ -13,12 +13,6 @@ import javax.faces.validator.FacesValidator;
 public class ValidatorInputY implements Validator{
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-        if (value.toString().matches("[^a-zA-Z]")){
-            FacesMessage msg = new FacesMessage("y validation failed","field must be not null");
-            System.out.print("sadasdasdasd");
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(msg);
-        }
         try{
             double y = Double.parseDouble(value.toString());
             System.out.print(y+"\n");

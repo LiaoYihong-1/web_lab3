@@ -1,6 +1,5 @@
 package Data;
 
-import javafx.scene.chart.ValueAxis;
 import lombok.Data;
 
 import javax.faces.application.FacesMessage;
