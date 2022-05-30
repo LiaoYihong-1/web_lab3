@@ -5,6 +5,9 @@
         <fileset file="${src.lib}/*.jar"/>
         <pathelement path="${build.snap_cla}"/>
     </path>
+    <path id="test_path">
+        <fileset file="${src.lib}/*.jar"/>
+    </path>
     <!--clean-->
     <target name="clean">
         <echo message="Deleting result"/>
@@ -13,7 +16,7 @@
     </target>
     <!--init-->
     <target name="init">
-        <echo message="Building basic directory"/>
+        <echo message="Creating basic directories"/>
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${build.cla}"/>
         <mkdir dir="${build.snap}"/>
@@ -22,6 +25,7 @@
         <mkdir dir="${build.str}"/>
         <mkdir dir="${build.lib}"/>
         <mkdir dir="${build.snap_cla}"/>
+        <mkdir dir="${build.test}"/>
     </target>
 
     <!--compile-->
@@ -47,14 +51,28 @@
             <fileset dir="${src.lib}"/>
         </copy>
         <jar destfile="${build.dir}/lab3.jar">
-            <fileset dir="${build.snap}"/>
+            <fileset dir="${build.snap}" excludes="**/**/Junit*,**/**/TestRunner.class"/>
             <manifest>
                 <attribute name="Main-Class" value="${main_class}"/>
+                <attribute name="Build-Jdk" value="version 1.8.0_202"/>
             </manifest>
         </jar>
     </target>
     <!--test-->
     <target name="test" depends="build">
-        <echo message="Testing your project"/>
+        <echo message="Testing your project with junit"/>
+        <junit>
+            <classpath>
+                <pathelement location="${build.snap_cla}"/>
+                <pathelement location="${build.lib}/junit-4.12.jar"/>
+                <pathelement location="${build.lib}/hamcrest-core-1.3.jar"/>
+            </classpath>
+            <formatter type="brief" usefile="false"/>
+            <batchtest todir="${build.test}">
+                <fileset dir="${build.snap_cla}">
+                    <include name="Junit*.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 </project>

@@ -17,6 +17,8 @@ public class Validator {
         else if( (x >= -r/2 && x <= 0) && (y<= 0 && y >= (-2*x-r) ) ){
             return true;
         }//y>=0,x<=0,x^2+y^2<=r*r
-        else return (x <= 0) && (y >= 0) && (x*x + y*y <= r*r);
+        else {
+            return (x <= 0) && (y >= 0) && (x*x + y*y <= r*r);
+        }
     }
 }
