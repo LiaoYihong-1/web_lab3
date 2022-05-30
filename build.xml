@@ -26,6 +26,9 @@
         <mkdir dir="${build.lib}"/>
         <mkdir dir="${build.snap_cla}"/>
         <mkdir dir="${build.test}"/>
+        <mkdir dir="${build.doc}"/>
+        <mkdir dir="${build.md5}"/>
+        <mkdir dir="${build.sha}"/>
     </target>
 
     <!--compile-->
@@ -50,8 +53,8 @@
         <copy todir="${build.lib}">
             <fileset dir="${src.lib}"/>
         </copy>
-        <jar destfile="${build.dir}/lab3.jar">
-            <fileset dir="${build.snap}" excludes="**/**/Junit*,**/**/TestRunner.class"/>
+        <jar destfile="${build.dir}/lab3.jar" update="true">
+            <fileset dir="${build.snap}" excludes="**/**/Junit*,**/**/TestRunner.class,doc"/>
             <manifest>
                 <attribute name="Main-Class" value="${main_class}"/>
                 <attribute name="Build-Jdk" value="version 1.8.0_202"/>
@@ -74,5 +77,35 @@
                 </fileset>
             </batchtest>
         </junit>
+    </target>
+    <!--doc-->
+    <target name="doc" depends="build">
+        <echo message="Creating documentation"/>
+        <javadoc sourcepath="${src.java}" destdir="${build.doc}"/>
+
+        <touch file="${build.md5}/total.MD5"/>
+        <checksum totalproperty="md5" todir="${build.md5}">
+            <fileset dir="${src.java}"/>
+        </checksum>
+        <echo file="${build.md5}/total.MD5">${md5}</echo>
+        <property name="md5" value="${build.md5}/total.MD5"/>
+
+        <touch file="${build.sha}/total.SHA-1"/>
+        <checksum totalproperty="sha" todir="${build.sha}" algorithm="SHA-1">
+            <fileset dir="${src.java}"/>
+        </checksum>
+        <echo file="${build.sha}/total.SHA-1">${sha}</echo>
+        <property name="sha" value="${build.sha}/total.SHA-1"/>
+        <jar destfile="${build.dir}/lab3.jar" update="true">
+            <fileset dir="${build.snap}" excludes="**/**/Junit*,**/**/TestRunner.class"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main_class}"/>
+                <attribute name="Build-Jdk" value="version 1.8.0_202"/>
+                <attribute name="md5" value="${md5}"/>
+                <attribute name="sha" value="${sha}"/>
+            </manifest>
+        </jar>
+        <delete file="${build.md5}/total.MD5"/>
+        <delete file="${build.md5}/total.sha"/>
     </target>
 </project>
