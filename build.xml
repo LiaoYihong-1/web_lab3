@@ -1,23 +1,60 @@
 <?xml version="1.0"?>
 <project name = "lab3" default = "build" basedir=".">
     <property file = "build.properties"/>
-    <target name = "clean">
-        <echo>Remove all the files that were compiled earlier in classes</echo>
-        <delete dir="${target.dir}"/>
+    <path id="jar_path">
+        <fileset file="${src.lib}/*.jar"/>
+        <pathelement path="${build.snap_cla}"/>
+    </path>
+    <!--clean-->
+    <target name="clean">
+        <echo message="Deleting result"/>
+        <delete file="${build.dir}/lab3.jar"/>
         <delete dir="${build.dir}"/>
     </target>
-
-    <target name = "init" depends="clean">
+    <!--init-->
+    <target name="init">
+        <echo message="Building basic directory"/>
         <mkdir dir="${build.dir}"/>
-        <mkdir dir="${target.dir}"/>
-        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${build.cla}"/>
+        <mkdir dir="${build.snap}"/>
+        <mkdir dir="${build.inf}"/>
+        <mkdir dir="${build.rec}"/>
+        <mkdir dir="${build.str}"/>
+        <mkdir dir="${build.lib}"/>
+        <mkdir dir="${build.snap_cla}"/>
     </target>
-    <target name = "compile" depends="init">
-        <echo>Your project is compiled.</echo>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="true">
-            <classpath>
-                <fileset dir="${lib.dir}" includes="*.jar"/>
-            </classpath>
+
+    <!--compile-->
+    <target name="compile" depends="clean,init">
+        <echo message="Compile all .java files"/>
+        <javac includeantruntime="true" destdir="${build.snap_cla}" srcdir="${src.java}">
+            <classpath refid="jar_path"/>
         </javac>
+    </target>
+    <!--build-->
+    <target name="build" depends="compile">
+        <echo message="build jar"/>
+        <copy todir="${build.snap_cla}">
+            <fileset file="${src.hiber}/**"/>
+        </copy>
+        <copy todir="${build.cla}">
+            <fileset dir="${build.snap_cla}"/>
+        </copy>
+        <copy todir="${build.snap}">
+            <fileset dir="${src.web}"/>
+        </copy>
+        <copy todir="${build.lib}">
+            <fileset dir="${src.lib}"/>
+        </copy>
+        <jar destfile="${build.dir}/lab3.jar">
+            <fileset dir="${build.snap}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main_class}"/>
+            </manifest>
+        </jar>
+    </target>
+    <!--test-->
+    <target name="test" depends="build">
+        <echo message="Testing your project"/>
     </target>
 </project>
