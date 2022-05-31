@@ -1,0 +1,42 @@
+10
+
+dir
+0
+svn://svn.svnbucket.com/x1761/test1/.idea/artifacts
+svn://svn.svnbucket.com/x1761/test1
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+becebe7a-23bf-4294-9661-f2a8004bc9c5
+
+lab3_war.xml
+file
+
+
+
+add
+
+lab3_war_exploded.xml
+file
+
+
+
+add
+

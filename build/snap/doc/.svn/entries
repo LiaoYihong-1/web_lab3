@@ -1,0 +1,140 @@
+10
+
+dir
+0
+svn://svn.svnbucket.com/x1761/test1/build/snap/doc
+svn://svn.svnbucket.com/x1761/test1
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+becebe7a-23bf-4294-9661-f2a8004bc9c5
+
+Data
+dir
+
+
+
+add
+
+DataBase
+dir
+
+
+
+add
+
+allclasses-frame.html
+file
+
+
+
+add
+
+allclasses-noframe.html
+file
+
+
+
+add
+
+constant-values.html
+file
+
+
+
+add
+
+deprecated-list.html
+file
+
+
+
+add
+
+help-doc.html
+file
+
+
+
+add
+
+index-all.html
+file
+
+
+
+add
+
+index.html
+file
+
+
+
+add
+
+overview-frame.html
+file
+
+
+
+add
+
+overview-summary.html
+file
+
+
+
+add
+
+overview-tree.html
+file
+
+
+
+add
+
+package-list
+file
+
+
+
+add
+
+script.js
+file
+
+
+
+add
+
+serialized-form.html
+file
+
+
+
+add
+
+stylesheet.css
+file
+
+
+
+add
+

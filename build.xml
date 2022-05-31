@@ -8,6 +8,9 @@
     <path id="test_path">
         <fileset file="${src.lib}/*.jar"/>
     </path>
+    <tstamp>
+        <format property="buildtime"  pattern="yyyy-MM-dd-HH:mm:ss"/>
+    </tstamp>
     <!--set for svun-->
     <path id="to_svn">
         <fileset dir="${src.lib}">
@@ -20,7 +23,7 @@
         </fileset>
     </path>
     <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="to_svn"/>
-    <svnSetting id="svn.setting" svnkit="true" username="s291007" password="pgt813" javahl="false" />
+    <svnSetting id="svn.setting" svnkit="true" username="x1761" password="163752410" javahl="false" />
     <!--clean-->
     <target name="clean">
         <echo message="Deleting result"/>
@@ -42,6 +45,7 @@
         <mkdir dir="${build.doc}"/>
         <mkdir dir="${build.md5}"/>
         <mkdir dir="${build.sha}"/>
+        <mkdir dir="${svn.dir}"/>
     </target>
 
     <!--compile-->
@@ -122,8 +126,30 @@
         <delete file="${build.md5}/total.sha"/>
     </target>
     <!--diff-->
-    <target>
+    <target name="checkout">
+        <svn refid="svn.setting">
+            <checkout url="svn://svn.svnbucket.com/x1761/test1/" revision="HEAD" destPath="${svn.dir}" />
+        </svn>
+        <copy todir="${svn.dir}/trunk">
+            <fileset dir="${src.dir}"/>
+        </copy>
+    </target>
+    <target name="update">
+        <svn refid="svn.setting">
+            <update revision="HEAD" dir="${svn.dir}"/>
+        </svn>
+    </target>
+    <target name="add">
+        <svn refid="svn.setting">
+            <add dir="${svn.dir}" force="true"/>
+        </svn>
+    </target>
+    <target name="commit">
+        <svn refid="svn.setting">
+            <commit dir="${svn.dir}/trunk" message="${buildtime}"/>
+        </svn>
+    </target>
+    <target name="diff">
         <echo message="Checking all differences"/>
-        <svn ></svn>
     </target>
 </project>
