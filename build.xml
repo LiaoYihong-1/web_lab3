@@ -155,7 +155,8 @@
     <target name="diff">
         <echo message="Checking all differences"/>
         <svn refid="svn.setting">
-            <status path="trunk" textStatusProperty="st"/>
+            <status path="trunk"/>
         </svn>
+        <echo>${st}</echo>
     </target>
 </project>
