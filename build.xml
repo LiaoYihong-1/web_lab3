@@ -8,6 +8,19 @@
     <path id="test_path">
         <fileset file="${src.lib}/*.jar"/>
     </path>
+    <!--set for svun-->
+    <path id="to_svn">
+        <fileset dir="${src.lib}">
+            <include name="svnant.jar"/>
+            <include name="svnClientAdapter.jar"/>
+            <include name="svnkit.jar"/>
+            <include name="svnjavahl.jar"/>
+            <include name="jna.jar"/>
+            <include name="ganymed.jar"/>
+        </fileset>
+    </path>
+    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="to_svn"/>
+    <svnSetting id="svn.setting" svnkit="true" username="s291007" password="pgt813" javahl="false" />
     <!--clean-->
     <target name="clean">
         <echo message="Deleting result"/>
@@ -101,11 +114,16 @@
             <manifest>
                 <attribute name="Main-Class" value="${main_class}"/>
                 <attribute name="Build-Jdk" value="version 1.8.0_202"/>
-                <attribute name="md5" value="${md5}"/>
-                <attribute name="sha" value="${sha}"/>
+                <attribute name="MD5" value="${md5}"/>
+                <attribute name="SHA" value="${sha}"/>
             </manifest>
         </jar>
         <delete file="${build.md5}/total.MD5"/>
         <delete file="${build.md5}/total.sha"/>
+    </target>
+    <!--diff-->
+    <target>
+        <echo message="Checking all differences"/>
+        <svn ></svn>
     </target>
 </project>
