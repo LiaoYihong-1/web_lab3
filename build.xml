@@ -11,7 +11,7 @@
     <tstamp>
         <format property="buildtime"  pattern="yyyy-MM-dd-HH:mm:ss"/>
     </tstamp>
-    <!--set for svun-->
+    <!--set for svn-->
     <path id="to_svn">
         <fileset dir="${src.lib}">
             <include name="svnant.jar"/>
@@ -45,7 +45,7 @@
         <mkdir dir="${build.doc}"/>
         <mkdir dir="${build.md5}"/>
         <mkdir dir="${build.sha}"/>
-        <mkdir dir="${svn.dir}"/>
+        <mkdir dir="${build.svn}"/>
     </target>
 
     <!--compile-->
@@ -136,12 +136,15 @@
     </target>
     <target name="update">
         <svn refid="svn.setting">
-            <update revision="HEAD" dir="${svn.dir}"/>
+            <update revision="HEAD" dir="${svn.dir}/trunk"/>
         </svn>
     </target>
     <target name="add">
+        <copy todir="${svn.dir}/trunk" force="true">
+            <fileset dir="${src.dir}"/>
+        </copy>
         <svn refid="svn.setting">
-            <add dir="${svn.dir}" force="true"/>
+            <add dir="${svn.dir}/trunk" force="true"/>
         </svn>
     </target>
     <target name="commit">
@@ -151,5 +154,8 @@
     </target>
     <target name="diff">
         <echo message="Checking all differences"/>
+        <svn refid="svn.setting">
+            <status path="trunk" textStatusProperty="st"/>
+        </svn>
     </target>
 </project>

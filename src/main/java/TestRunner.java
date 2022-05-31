@@ -9,6 +9,5 @@ public class TestRunner {
         for(Failure failure:result_1.getFailures()){
             System.out.println(failure.toString());
         }
-        System.out.println(result_1.wasSuccessful());
     }
 }

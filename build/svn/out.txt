@@ -1,0 +1,23 @@
+Index: C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/Main.java
+===================================================================
+--- C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/Main.java	(revision 7)
++++ C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/Main.java	(working copy)
+@@ -1,6 +1,6 @@
+ 
+ public class Main {
+     public static void main(String[] args) {
+-        System.out.print("Hello world\n");
++        System.out.print("Helwd\n");
+     }
+ }
+Index: C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/TestRunner.java
+===================================================================
+--- C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/TestRunner.java	(revision 6)
++++ C:/Users/x1761/desktop/git-3/lab3/trunk/main/java/TestRunner.java	(working copy)
+@@ -9,6 +9,5 @@
+         for(Failure failure:result_1.getFailures()){
+             System.out.println(failure.toString());
+         }
+-        System.out.println(result_1.wasSuccessful());
+     }
+ }
