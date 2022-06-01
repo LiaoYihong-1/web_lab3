@@ -11,19 +11,6 @@
     <tstamp>
         <format property="buildtime"  pattern="yyyy-MM-dd-HH:mm:ss"/>
     </tstamp>
-    <!--set for svn-->
-    <path id="to_svn">
-        <fileset dir="${src.lib}">
-            <include name="svnant.jar"/>
-            <include name="svnClientAdapter.jar"/>
-            <include name="svnkit.jar"/>
-            <include name="svnjavahl.jar"/>
-            <include name="jna.jar"/>
-            <include name="ganymed.jar"/>
-        </fileset>
-    </path>
-    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="to_svn"/>
-    <svnSetting id="svn.setting" svnkit="true" username="x1761" password="163752410" javahl="false" />
     <!--clean-->
     <target name="clean">
         <echo message="Deleting result"/>
@@ -46,6 +33,7 @@
         <mkdir dir="${build.md5}"/>
         <mkdir dir="${build.sha}"/>
         <mkdir dir="${build.svn}"/>
+        <mkdir dir="${build.diff}"/>
     </target>
 
     <!--compile-->
@@ -125,6 +113,18 @@
         <delete file="${build.md5}/total.MD5"/>
         <delete file="${build.md5}/total.sha"/>
     </target>
+    <!--set for svn-->
+    <path id="to_svn">
+        <fileset dir="${src.lib}" caseSensitive="false">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="to_svn"/>
+    <svnSetting id="svn.setting" svnkit="true" username="x1761" password="163752410" javahl="false" />
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${src.lib}/ant-contrib-1.0b3.jar"/>
+
     <!--diff-->
     <target name="checkout">
         <svn refid="svn.setting">
@@ -152,11 +152,42 @@
             <commit dir="${svn.dir}/trunk" message="${buildtime}"/>
         </svn>
     </target>
+
     <target name="diff">
         <echo message="Checking all differences"/>
         <svn refid="svn.setting">
-            <status path="trunk"/>
+            <diff oldPath="${svn.dir}/trunk" outFile="${build.diff}/diff.txt"/>
         </svn>
-        <echo>${st}</echo>
+        <for list="${classes}" delimiter="," param = "temp">
+            <sequential>
+                <fileset id="build.failures" dir="${build.diff}" includes="diff.txt">
+                    <contains text="@{temp}"/>
+                </fileset>
+                <if>
+                    <resourcecount when="gt" count="0" refid="build.failures" />
+                    <then>
+                        <echo message="The modification contains the specified class: '@{temp}', cannot be submitted"/>
+                        <property name="boolean" value="false"/>
+                    </then>
+                </if>
+            </sequential>
+        </for>
+        <condition property="boolean.set" else="false">
+            <isset property="boolean"/>
+        </condition>
+        <if>
+            <or>
+            <length length="0"  file="${build.diff}/diff.txt"/>
+            <istrue value="${boolean.set}"/>
+            </or>
+            <then>
+                <echo message="Please revert the changes"/>
+            </then>
+            <else>
+                <antcall target="add"/>
+                <antcall target="commit"/>
+                <antcall target="update"/>
+            </else>
+        </if>
     </target>
 </project>
