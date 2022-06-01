@@ -156,7 +156,7 @@
     <target name="diff">
         <echo message="Checking all differences"/>
         <svn refid="svn.setting">
-            <diff oldPath="${svn.dir}/trunk" outFile="${build.diff}/diff.txt"/>
+            <diff oldPath="${src.java}" outFile="${build.diff}/diff.txt"/>
         </svn>
         <for list="${classes}" delimiter="," param = "temp">
             <sequential>
