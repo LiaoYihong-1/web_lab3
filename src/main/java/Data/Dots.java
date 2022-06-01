@@ -20,7 +20,9 @@ public class Dots implements Serializable {
     private List<DotsTable> table = new ArrayList<>();
     private DataBaseStorage storage = new DataBaseStorage();
 
-    public Dots(){ }
+    public Dots(){
+        System.out.print("asdasdasdasd");
+    }
 
     public void addDot(){
         if(Validator.validateValues(dot)){
