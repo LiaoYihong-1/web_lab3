@@ -1,0 +1,114 @@
+10
+
+dir
+11
+svn://svn.svnbucket.com/x1761/test1
+svn://svn.svnbucket.com/x1761/test1
+
+
+
+2022-06-01T06:06:30.482272Z
+11
+x1761
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+becebe7a-23bf-4294-9661-f2a8004bc9c5
+
+.git
+dir
+
+
+
+add
+
+.idea
+dir
+
+
+
+add
+
+branches
+dir
+
+build
+dir
+
+
+
+add
+
+build.properties
+file
+0
+
+
+add
+
+build.xml
+file
+0
+
+
+add
+
+lab3.iml
+file
+0
+
+
+add
+
+lib
+dir
+
+
+
+add
+
+pom.xml
+file
+0
+
+
+add
+
+src
+dir
+
+
+
+add
+
+tags
+dir
+
+target
+dir
+
+
+
+add
+
+test
+dir
+
+
+
+add
+
+trunk
+dir
+

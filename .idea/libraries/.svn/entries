@@ -1,0 +1,189 @@
+10
+
+dir
+0
+svn://svn.svnbucket.com/x1761/test1/.idea/libraries
+svn://svn.svnbucket.com/x1761/test1
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+becebe7a-23bf-4294-9661-f2a8004bc9c5
+
+Maven__antlr_antlr_2_7_7.xml
+file
+
+
+
+add
+
+Maven__dom4j_dom4j_1_6_1.xml
+file
+
+
+
+add
+
+Maven__javax_javaee_web_api_8_0_1.xml
+file
+
+
+
+add
+
+Maven__junit_junit_4_12.xml
+file
+
+
+
+add
+
+Maven__org_apiguardian_apiguardian_api_1_1_0.xml
+file
+
+
+
+add
+
+Maven__org_hamcrest_hamcrest_core_1_3.xml
+file
+
+
+
+add
+
+Maven__org_hibernate_common_hibernate_commons_annotations_4_0_5_Final.xml
+file
+
+
+
+add
+
+Maven__org_hibernate_hibernate_core_4_3_6_Final.xml
+file
+
+
+
+add
+
+Maven__org_hibernate_javax_persistence_hibernate_jpa_2_1_api_1_0_0_Final.xml
+file
+
+
+
+add
+
+Maven__org_javassist_javassist_3_18_1_GA.xml
+file
+
+
+
+add
+
+Maven__org_jboss_jandex_1_1_0_Final.xml
+file
+
+
+
+add
+
+Maven__org_jboss_logging_jboss_logging_3_1_3_GA.xml
+file
+
+
+
+add
+
+Maven__org_jboss_logging_jboss_logging_annotations_1_2_0_Beta1.xml
+file
+
+
+
+add
+
+Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_0_0_Final.xml
+file
+
+
+
+add
+
+Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml
+file
+
+
+
+add
+
+Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml
+file
+
+
+
+add
+
+Maven__org_junit_platform_junit_platform_commons_1_7_1.xml
+file
+
+
+
+add
+
+Maven__org_junit_platform_junit_platform_engine_1_7_1.xml
+file
+
+
+
+add
+
+Maven__org_opentest4j_opentest4j_1_2_0.xml
+file
+
+
+
+add
+
+Maven__org_postgresql_postgresql_42_2_14.xml
+file
+
+
+
+add
+
+Maven__org_primefaces_primefaces_10_0_0.xml
+file
+
+
+
+add
+
+Maven__org_projectlombok_lombok_1_18_12.xml
+file
+
+
+
+add
+
+Maven__xml_apis_xml_apis_1_0_b2.xml
+file
+
+
+
+add
+

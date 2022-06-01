@@ -66,20 +66,30 @@
             </manifest>
         </jar>
     </target>
+
+
+
     <!--test-->
+    <path id="classpath.test">
+        <pathelement location="${build.snap_cla}"/>
+        <pathelement location="${build.lib}/junit-3.8.1.jar"/>
+        <pathelement location="${build.lib}/hamcrest-core-1.3.jar"/>
+    </path>
     <target name="test" depends="build">
         <echo message="Testing your project with junit"/>
-        <junit>
+
+        <javac srcdir="${src.test}" destdir="${build.test}" includeantruntime="false">
+            <classpath refid="classpath.test"/>
+        </javac>
+
+        <junit printsummary="on" haltonfailure="yes" fork="true">
             <classpath>
-                <pathelement location="${build.snap_cla}"/>
-                <pathelement location="${build.lib}/junit-4.12.jar"/>
-                <pathelement location="${build.lib}/hamcrest-core-1.3.jar"/>
+                <path refid="classpath.test"/>
+                <pathelement location="${build.test}"/>
             </classpath>
-            <formatter type="brief" usefile="false"/>
-            <batchtest todir="${build.test}">
-                <fileset dir="${build.snap_cla}">
-                    <include name="Junit*.class"/>
-                </fileset>
+            <formatter type="brief" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.test}" includes="**/JunitTestValidator.java" />
             </batchtest>
         </junit>
     </target>
@@ -177,8 +187,8 @@
         </condition>
         <if>
             <or>
-            <length length="0"  file="${build.diff}/diff.txt"/>
-            <istrue value="${boolean.set}"/>
+                <length length="0"  file="${build.diff}/diff.txt"/>
+                <istrue value="${boolean.set}"/>
             </or>
             <then>
                 <echo message="Please revert the changes"/>
