@@ -71,7 +71,16 @@
                 </p:commandButton>
             </h:form>
         </ui:define>
-
+        <ui:define name="checkForm">
+            <h:form id="checkForm" style="visibility: hidden">
+                <h:inputText id="checkX" value="${lab4.d.x}"/>
+                <h:inputText id="checkR" value="${lab4.d.r}"/>
+                <h:inputText id="checkY" value="${lab4.d.y}"/>
+                <h:inputText id="checkBasic" value="${lab4.repeated}"/>
+                <h:commandButton id = "addButton" action="#{lab4.addDot}" onclick="get_values()"/>
+                <h:commandButton id = "resultButton" onclick="check_repeat()"/>
+            </h:form>
+        </ui:define>
         <ui:define name="graph">
             <ui:include src="resources/main_result_graph/graph.xhtml"/>
         </ui:define>
