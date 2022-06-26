@@ -128,11 +128,13 @@ function updateClick(id){
     drawBackground(id);// redraw background(nor includes dots)
     drawDots(id);//draw all dots
     document.getElementById("checkForm:addButton").click();
+    document.getElementById("perForm:perButton").click();
 }
 function spinnerChange(){
     document.getElementById("requestForm:visible-submit").click();
 }
 
+//这两个是给Repeat用的
 function get_values(){
     document.getElementById("checkForm:checkX").value = inputX;
     document.getElementById("checkForm:checkR").value = inputR;
@@ -145,4 +147,10 @@ function check_repeat(data){
             alert("You input 3 dot not in range")
         }
     }
+}
+//这两个是给Percentage用的
+function get_v_for_p(){
+    document.getElementById("perForm:perX").value = inputX;
+    document.getElementById("perForm:perR").value = inputR;
+    document.getElementById("perForm:perY").value = inputY;
 }
