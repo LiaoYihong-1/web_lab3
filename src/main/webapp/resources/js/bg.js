@@ -129,11 +129,6 @@ function getForm(){
         inputY = 10000;
     }
 }
-function getInvisibleForm(){
-    inputR = Number(document.getElementById("canvasForm:canvasR").value).toFixed(2)+"";
-    inputX = Number(document.getElementById("canvasForm:canvasX").value).toFixed(2)+"";
-    inputY = Number(document.getElementById("canvasForm:canvasY").value).toFixed(2)+"";
-}
 function clearGraph(id){
     let canvas = document.getElementById(id);
     let rubbish = canvas.getContext("2d");
@@ -142,12 +137,6 @@ function clearGraph(id){
 window.onload=function () {
     drawBackground("click-graph");
 };
-function updateClick(id){
-    clearGraph(id);//delete graph and then redraw
-    getInvisibleForm();//read your visible form
-    drawBackground(id);// redraw background(nor includes dots)
-    drawDots(id);//draw all dots
-}
 function clear(id){
     clearGraph(id);//delete graph and then redraw
     getForm();//read your visible form

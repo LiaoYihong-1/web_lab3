@@ -13,7 +13,7 @@ public class Dot implements Serializable {
     private Double x;
     private String y;
     private Double r;
-    private boolean hit = true;
+    private boolean hit = false;
     private UserDate date;
 
 

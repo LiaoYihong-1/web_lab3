@@ -7,7 +7,6 @@ const hour_font = "60px Verdana";
 const min_font = "40px Verdana";
 const sec_font = "10px Verdana";
 const min_line_font = "10px Verdana";
-
 function drawClock() {
     let canvas = document.getElementById("click-clock");
     let pen = canvas.getContext("2d");

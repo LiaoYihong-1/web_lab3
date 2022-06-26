@@ -17,6 +17,7 @@
             <h:outputScript library="js" name="graphDrawsPen.js"/>
             <h:outputScript library="js" name="dotsPen.js"/>
             <h:outputScript library="js" name="as1.js"/>
+            <h:outputScript library="js" name="bg.js"/>
         </ui:define>
 
         <ui:define name="title">P3211 Ляо Ихун 291007 3100777</ui:define>
@@ -71,14 +72,21 @@
                 </p:commandButton>
             </h:form>
         </ui:define>
-        <ui:define name="checkForm">
-            <h:form id="checkForm" style="visibility: hidden">
-                <h:inputText id="checkX" value="${lab4.d.x}"/>
-                <h:inputText id="checkR" value="${lab4.d.r}"/>
-                <h:inputText id="checkY" value="${lab4.d.y}"/>
-                <h:inputText id="checkBasic" value="${lab4.repeated}"/>
-                <h:commandButton id = "addButton" action="#{lab4.addDot}" onclick="get_values()"/>
-                <h:commandButton id = "resultButton" onclick="check_repeat()"/>
+        <ui:define name="checkForm" >
+            <h:form id="checkForm">
+                <div>
+                    nums of dots:<h:outputText id="nums_all" value="${lab4.nums_total}"/>
+                </div>
+                <div>
+                    nums of not hit dots:<h:outputText id = "nums_not_hit"  value="${lab4.nums_not_hit}"/>
+                </div>
+                <h:inputText id="checkX" value="${lab4.d.x}" style="visibility: hidden"/>
+                <h:inputText id="checkR" value="${lab4.d.r}" style="visibility: hidden"/>
+                <h:inputText id="checkY" value="${lab4.d.y}" style="visibility: hidden"/>
+                <h:inputText id="checkBasic" value="${lab4.repeated}" style="visibility: hidden"/>
+                <h:commandButton id = "addButton" action="#{lab4.addDot}" onclick="get_values()" style="visibility: hidden">
+                    <f:ajax execute="checkForm" render="checkBasic nums_all nums_not_hit" onevent="check_repeat"/>
+                </h:commandButton>
             </h:form>
         </ui:define>
         <ui:define name="graph">

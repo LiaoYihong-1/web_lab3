@@ -108,28 +108,7 @@ function drawBackground(id){
     pen.stroke();
     pen.closePath();
 }
-function updateInput(id){
-    clearGraph(id);//delete graph and then redraw
-    getForm();//read your visible form
-    drawBackground(id);// redraw background(nor includes dots)
-    drawDots(id);//draw all dots
-}
 //input real absolute coordinate to the frame
-function getForm(){
-    inputR = document.getElementById("requestForm:R_input").value;
-    inputX = document.getElementById("requestForm:X_input").value
-    inputX = inputX.replace(/,/,".");
-    inputR = inputR.replace(/,/,".");
-    inputR = Number(inputR).toFixed(2)+"";
-    inputX = Number(inputX).toFixed(2)+"";
-    if(document.getElementById("requestForm:Y").value!==null &&document.getElementById("requestForm:Y").value!=="") {
-        inputY = document.getElementById("requestForm:Y").value;
-        inputY = inputY.replace(/,/,".");
-        inputY = Number(document.getElementById("requestForm:Y").value).toFixed(2) + "";
-    }else {
-        inputY = 10000;
-    }
-}
 function getInvisibleForm(){
     inputR = Number(document.getElementById("canvasForm:canvasR").value).toFixed(2)+"";
     inputX = Number(document.getElementById("canvasForm:canvasX").value).toFixed(2)+"";
@@ -148,13 +127,22 @@ function updateClick(id){
     getInvisibleForm();//read your visible form
     drawBackground(id);// redraw background(nor includes dots)
     drawDots(id);//draw all dots
-}
-function clear(id){
-    clearGraph(id);//delete graph and then redraw
-    getForm();//read your visible form
-    drawBackground(id);// redraw background(nor includes dots)
-    dots =[];
+    document.getElementById("checkForm:addButton").click();
 }
 function spinnerChange(){
     document.getElementById("requestForm:visible-submit").click();
+}
+
+function get_values(){
+    document.getElementById("checkForm:checkX").value = inputX;
+    document.getElementById("checkForm:checkR").value = inputR;
+    document.getElementById("checkForm:checkY").value = inputY;
+}
+function check_repeat(data){
+    if(data.status == "success") {
+        let repeated = document.getElementById("checkForm:checkBasic").value;
+        if (repeated === 'true') {
+            alert("You input 3 dot not in range")
+        }
+    }
 }

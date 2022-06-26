@@ -75,6 +75,4 @@ document.getElementById("click-graph").addEventListener("click",function (event)
     document.getElementById("canvasForm:canvasY").value = (cy+"").replace(/,/,".");
     document.getElementById("canvasForm:canvasR").value = inputR;
     document.getElementById("canvasForm:submitClick").click();
-    //document.getElementById("checkForm:addButton").click();
-    //document.getElementById("checkForm:resultButton").click();
 });
