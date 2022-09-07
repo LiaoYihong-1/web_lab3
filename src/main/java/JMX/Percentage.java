@@ -4,6 +4,7 @@ import lombok.Data;
 import Data.Dot;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.management.Notification;
 import javax.management.NotificationBroadcasterSupport;
 @Data
 @SessionScoped
@@ -11,21 +12,31 @@ import javax.management.NotificationBroadcasterSupport;
 public class Percentage extends NotificationBroadcasterSupport implements PercentageMBean {
     private int all_nums = 0;
     private int hit = 0;
-    private double percentage = 0;
+    public double percentage = 0;
     private Dot dot = new Dot();
+
+    private int sequenceNumber = 0;
 
     private static final Percentage PB = new Percentage();
 
     public static Percentage getInstance(){
         return PB;
     }
+    
+
+    @Override
+    public void setPercentage(double p) {
+        percentage = p;
+    }
 
     @Override
     public void percentageGet() {
         update();
         if(all_nums!=0){
-            this.percentage = (double) Math.round(hit*100/all_nums)/100;
+            setPercentage((double) Math.round(hit*100/all_nums)/100);
         }
+        sendNotification(new Notification("PointsStat", this, sequenceNumber++,
+                System.currentTimeMillis(), String.format("Percentage of hit dot is %f",this.percentage)));
     }
 
     public void update(){
@@ -34,5 +45,6 @@ public class Percentage extends NotificationBroadcasterSupport implements Percen
             hit = hit+1;
         }
         all_nums = all_nums + 1;
+
     }
 }

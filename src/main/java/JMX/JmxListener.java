@@ -9,7 +9,7 @@ import javax.management.ObjectName;
  * @author x1761
  */
 public class JmxListener implements ServletContextListener {
-    public static final String PB = "JMX:type=mbean,name=PercentageMBean";
+    public static final String PB = "JMX:type=mbean,name=percentage";
     public static final String RB = "JMX:type=mbean,name=RepeatMBean";
 
     @Override
@@ -18,7 +18,6 @@ public class JmxListener implements ServletContextListener {
             final MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
             ObjectName PBName = new ObjectName(PB);
             ObjectName RBName = new ObjectName(RB);
-            System.out.print("廖奕宏\n");
             mBeanServer.registerMBean(Repeat.getInstance(), RBName);
             mBeanServer.registerMBean(Percentage.getInstance(), PBName);
 
