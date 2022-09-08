@@ -9,8 +9,8 @@ import javax.management.ObjectName;
  * @author x1761
  */
 public class JmxListener implements ServletContextListener {
-    public static final String PB = "JMX:type=mbean,name=percentage";
-    public static final String RB = "JMX:type=mbean,name=RepeatMBean";
+    public static final String PB = "JMX:type=mbean,name=Percentage";
+    public static final String RB = "JMX:type=mbean,name=Repeat";
 
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {

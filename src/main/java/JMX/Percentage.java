@@ -22,12 +22,7 @@ public class Percentage extends NotificationBroadcasterSupport implements Percen
     public static Percentage getInstance(){
         return PB;
     }
-    
 
-    @Override
-    public void setPercentage(double p) {
-        percentage = p;
-    }
 
     @Override
     public void percentageGet() {
@@ -35,10 +30,14 @@ public class Percentage extends NotificationBroadcasterSupport implements Percen
         if(all_nums!=0){
             setPercentage((double) Math.round(hit*100/all_nums)/100);
         }
-        sendNotification(new Notification("PointsStat", this, sequenceNumber++,
+
+        Percentage.PB.setPercentage((double) Math.round(hit*100/all_nums)/100);
+        PB.sendMessage();
+    }
+    public void sendMessage(){
+        sendNotification(new Notification("Percentage", this, sequenceNumber++,
                 System.currentTimeMillis(), String.format("Percentage of hit dot is %f",this.percentage)));
     }
-
     public void update(){
         dot = new Dot(dot.getX(),dot.getY(),dot.getR());
         if(dot.isHit()){

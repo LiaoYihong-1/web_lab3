@@ -39,11 +39,15 @@ public class Repeat extends NotificationBroadcasterSupport implements RepeatMBea
             }
         }
         if(this.repeated){
-            sendNotification(new Notification("PointsStat", this, sequenceNumber++,
-                    System.currentTimeMillis(), "Enter three dots not in range"));
+            RB.sendMessage();
         }
+        RB.setRepeated(repeated);
     }
 
+    public void sendMessage(){
+        sendNotification(new Notification("Repeat", this, sequenceNumber++,
+                System.currentTimeMillis(), "Enter three dots not in range"));
+    }
     public boolean isRepeated() {
         return repeated;
     }
